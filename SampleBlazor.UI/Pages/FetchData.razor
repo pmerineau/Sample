@@ -34,8 +34,17 @@ else
     </table>
 }
 
+<div>
+    <input @bind="newClient.Name" type="text"/>
+    <input @bind="newClient.Email" type="text"/>
+    <button class="btn btn-primary" @onclick="@(async () => await AddClient())">Add</button>
+</div>
+
 @code {
     private ClientGetDto[]? clients;
+
+    private ClientSaveDto newClient = new ClientSaveDto();
+
 
     protected override async Task OnInitializedAsync()
     {
@@ -50,6 +59,14 @@ else
     private async Task DeleteClient(int id)
     {
         await httpClient.DeleteAsync($"api/Clients/{id}");
+        await LoadData();
+    }
+
+    private async Task AddClient()
+    {
+        await httpClient.PostAsJsonAsync($"api/Clients", newClient);
+        newClient.Email = "";
+        newClient.Name= "";
         await LoadData();
     }
 }
