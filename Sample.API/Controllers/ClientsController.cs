@@ -45,5 +45,12 @@ namespace Sample.API.Controllers
             var result = await _clientService.UpdateClientAsync(client);
             return Ok(result);
         }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<ClientGetDto>> DeleteClient(int id)
+        {
+            await _clientService.DeleteClientAsync(id);
+            return Ok();
+        }
     }
 }

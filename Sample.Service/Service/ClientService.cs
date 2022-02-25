@@ -11,6 +11,7 @@ namespace Sample.Service.Service
         Task<IEnumerable<ClientGetDto>> GetAllClientsAsync();
         Task<ClientGetDto> UpdateClientAsync(ClientSaveDto client);
         Task<ClientGetDto> AddClientAsync(ClientSaveDto client);
+        Task DeleteClientAsync(int id);
     }
 
     public sealed class ClientService : IClientService // la class est sealed 
@@ -28,6 +29,11 @@ namespace Sample.Service.Service
             var dbClient = _mapper.Map<Client>(client);
             var result = await _clientRepo.AddClientAsync(dbClient);
             return _mapper.Map<ClientGetDto>(result);
+        }
+
+        public async Task DeleteClientAsync(int id)
+        {
+            await _clientRepo.DeleteClientAsync(id);
         }
 
         public async Task<ClientGetDto> UpdateClientAsync(ClientSaveDto client)
@@ -48,5 +54,7 @@ namespace Sample.Service.Service
             var result = await _clientRepo.GetAllClientsAsync(); 
             return _mapper.Map<IEnumerable<ClientGetDto>>(result);
         }
+
+
     }
 }

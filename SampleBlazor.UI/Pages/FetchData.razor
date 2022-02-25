@@ -1,6 +1,6 @@
 ﻿@page "/fetchdata"
 @using Sample.Shared
-@inject HttpClient Http
+@inject HttpClient httpClient
 
 <PageTitle>Liste de client</PageTitle>
 
@@ -27,6 +27,7 @@ else
                     <td>@client.Id</td>
                     <td>@client.Name</td>
                     <td>@client.Email</td>
+                    <td><button class="btn btn-primary" @onclick="@(async () => await DeleteClient(client.Id))">X</button></td>
                 </tr>
             }
         </tbody>
@@ -35,6 +36,20 @@ else
 
 @code {
     private ClientGetDto[]? clients;
-    // TODO : passer par un base address
-    protected override async Task OnInitializedAsync() => clients = await Http.GetFromJsonAsync<ClientGetDto[]>("http://localhost:5001/api/Clients");
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadData();
+    }
+
+    private async Task LoadData()
+    {
+        clients = await httpClient.GetFromJsonAsync<ClientGetDto[]>("api/Clients");
+    }
+
+    private async Task DeleteClient(int id)
+    {
+        await httpClient.DeleteAsync($"api/Clients/{id}");
+        await LoadData();
+    }
 }
