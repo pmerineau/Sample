@@ -11,7 +11,6 @@ public static class ServiceExtensions
 	
     public static void ConfigureRepository(this IServiceCollection services)
     {
-        services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
         services.AddScoped<IClientRepository, ClientRepository>();
     }
 
@@ -22,7 +21,7 @@ public static class ServiceExtensions
 
     public static void ConfigureAutoMapper(this IServiceCollection services)
     {
-        services.AddAutoMapper(typeof(MappingProfile));
+        services.AddAutoMapper(typeof(MappingProfile)); //dans service
     }
 
     public static void ConfigureSqlContext(this IServiceCollection services, IConfiguration configuration)

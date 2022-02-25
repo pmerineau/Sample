@@ -11,7 +11,6 @@ namespace Sample.Repo.Entities
 
         public Client()
         {
-
         }
     }
 }

@@ -17,33 +17,33 @@ namespace Sample.API.Controllers
         [HttpGet("Clients")]
         public async Task<ActionResult<IEnumerable<ClientGetDto>>> GetAllClients()
         {
-            var clients = await _clientService.GetAllClientsAsync();
-            return Ok(clients);
+            var result = await _clientService.GetAllClientsAsync();
+            return Ok(result);
         }
 
         [HttpGet("Clients/{id}")]
         public async Task<ActionResult<ClientGetDto>> GetClient(int id)
         {
-            var client = await _clientService.GetClientAsync(id);
-            if (client == null)
+            var result = await _clientService.GetClientAsync(id);
+            if (result == null)
             {
                 return NotFound();
             }
-
-            return client;
+            return result;
         }
 
         [HttpPost("Client")]
         public async Task<ActionResult<ClientGetDto>> AddClient(ClientSaveDto client)
         {
-            var newClient = await _clientService.AddClientAsync(client);
-            return Ok(newClient);
+            var result = await _clientService.AddClientAsync(client);
+            return Ok(result);
         }
 
         [HttpPut("Client")]
         public async Task<ActionResult<ClientGetDto>> UpdateClient(ClientSaveDto client)
         {
-            return await _clientService.UpdateClientAsync(client);
+            var result = await _clientService.UpdateClientAsync(client);
+            return Ok(result);
         }
     }
 }

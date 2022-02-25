@@ -35,7 +35,6 @@ namespace Sample.Repo.Repository
             {
                 throw new Exception($"Erreur dans GetAsync: {e.Message}");
             }
-            
         }
 
         public async Task<TEntity> AddAsync(TEntity entity)
@@ -50,7 +49,6 @@ namespace Sample.Repo.Repository
             {
                 throw new Exception($"Erreur dans AddAsync: {e.Message}");
             }
-            
         }
 
         public async Task<TEntity> UpdateAsync(TEntity entity)
@@ -65,7 +63,6 @@ namespace Sample.Repo.Repository
             {
                 throw new Exception($"Erreur dans UpdateAsync: {e.Message}");
             }
-            
         }
 
         public async Task<TEntity> DeleteAsync(int id)

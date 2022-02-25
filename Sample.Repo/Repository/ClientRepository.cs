@@ -16,7 +16,6 @@ namespace Sample.Repo.Repository
         
         public ClientRepository(ApplicationDbContext dbContext) : base(dbContext)
         {
-           
         }
 
         public async Task<Client> AddClientAsync(Client client)
