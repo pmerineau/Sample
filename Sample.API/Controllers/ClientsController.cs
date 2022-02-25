@@ -14,14 +14,14 @@ namespace Sample.API.Controllers
             _clientService = clientService;
         }
 
-        [HttpGet("Clients")]
+        [HttpGet]
         public async Task<ActionResult<IEnumerable<ClientGetDto>>> GetAllClients()
         {
             var result = await _clientService.GetAllClientsAsync();
             return Ok(result);
         }
 
-        [HttpGet("Clients/{id}")]
+        [HttpGet("{id}")]
         public async Task<ActionResult<ClientGetDto>> GetClient(int id)
         {
             var result = await _clientService.GetClientAsync(id);
@@ -32,14 +32,14 @@ namespace Sample.API.Controllers
             return result;
         }
 
-        [HttpPost("Client")]
+        [HttpPost]
         public async Task<ActionResult<ClientGetDto>> AddClient(ClientSaveDto client)
         {
             var result = await _clientService.AddClientAsync(client);
             return Ok(result);
         }
 
-        [HttpPut("Client")]
+        [HttpPut]
         public async Task<ActionResult<ClientGetDto>> UpdateClient(ClientSaveDto client)
         {
             var result = await _clientService.UpdateClientAsync(client);

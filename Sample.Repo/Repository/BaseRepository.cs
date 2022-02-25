@@ -4,7 +4,7 @@ namespace Sample.Repo.Repository
 {
     public interface IBaseRepository<TEntity> where TEntity : class
     {
-        Task<List<TEntity>> GetAllAsync();
+        Task<IEnumerable<TEntity>> GetAllAsync();
         Task<TEntity?> GetAsync(int id);
         Task<TEntity> AddAsync(TEntity entity);
         Task<TEntity> UpdateAsync(TEntity entity);
@@ -20,7 +20,7 @@ namespace Sample.Repo.Repository
             _dbContext = dbContext;
         }
 
-        public async Task<List<TEntity>> GetAllAsync()
+        public async Task<IEnumerable<TEntity>> GetAllAsync()
         {
             return await _dbContext.Set<TEntity>().ToListAsync();
         }

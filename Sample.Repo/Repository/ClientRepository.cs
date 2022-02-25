@@ -6,7 +6,7 @@ namespace Sample.Repo.Repository
     {
         Task<Client> AddClientAsync(Client client);
         Task<Client?> GetClientAsync(int id);
-        Task<List<Client>> GetAllClientsAsync();
+        Task<IEnumerable<Client>> GetAllClientsAsync();
         Task<Client> UpdateClientAsync(Client client);
         Task<Client> DeleteClientAsync(int id);
     }
@@ -28,7 +28,7 @@ namespace Sample.Repo.Repository
             return await base.GetAsync(id);
         }
 
-        public async Task<List<Client>> GetAllClientsAsync()
+        public async Task<IEnumerable<Client>> GetAllClientsAsync()
         {
             return await base.GetAllAsync();
         }
