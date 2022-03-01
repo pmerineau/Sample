@@ -27,7 +27,7 @@ namespace Sample.Test.Service
             {
                 Id = 1,
                 Email = "test@email.com",
-                Name = "test"
+                Name = "tesft"
             };
             var mockClientRepo = new Mock<IClientRepository>();
             mockClientRepo.Setup(u => u.AddClientAsync(It.IsAny<Client>()))
